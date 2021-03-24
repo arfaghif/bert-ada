@@ -17,6 +17,7 @@ from pytorch_transformers import WEIGHTS_NAME, CONFIG_NAME
 from pytorch_transformers.modeling_bert import BertForPreTraining
 from pytorch_transformers.tokenization_bert import BertTokenizer
 from pytorch_transformers.optimization import AdamW, WarmupLinearSchedule
+from transformers import AutoTokenizer, AutoModel
 
 
 """
@@ -232,7 +233,9 @@ def main():
         logging.warning(f"Output directory ({args.output_dir}) already exists and is not empty!")
     args.output_dir.mkdir(parents=True, exist_ok=True)
 
-    tokenizer = BertTokenizer.from_pretrained(args.bert_model, do_lower_case=args.do_lower_case)
+    # TODO: refactor after experiment
+    # tokenizer = BertTokenizer.from_pretrained(args.bert_model, do_lower_case=args.do_lower_case)
+    tokenizer = AutoTokenizer.from_pretrained("indobenchmark/indobert-base-p2")
 
     total_train_examples = 0
     for i in range(args.epochs):
@@ -245,7 +248,9 @@ def main():
         num_train_optimization_steps = num_train_optimization_steps // torch.distributed.get_world_size()
 
     # Prepare model
-    model = BertForPreTraining.from_pretrained(args.bert_model)
+    # TODO: refactor after experiment
+    # model = BertForPreTraining.from_pretrained(args.bert_model)
+    model = AutoModel.from_pretrained("indobenchmark/indobert-base-p2")
     if args.fp16:
         model.half()
     model.to(device)

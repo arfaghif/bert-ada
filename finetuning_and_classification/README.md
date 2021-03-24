@@ -38,7 +38,7 @@ Also the pytorch-transformers and apex python modules need to be installed (apex
     --model_type bert \
     --model_name_or_path ../data/models/restaurants_10mio_ep3 \
     --do_train --evaluate_during_training --do_eval \
-    --logging_steps 100 --save_steps 1200 --task_name=semeval2014-atsc \
+    --logging_steps 100 --save_steps 1200 --task_name=semeval2014-atsc  \
     --seed 42 --do_lower_case \
     --data_dir=../data/transformed/restaurants_noconfl \
     --output_dir=../data/models/semeval2014-atsc-bert-ada-restaurants-restaurants \
