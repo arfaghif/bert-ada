@@ -278,8 +278,7 @@ def main():
         #                      warmup=args.warmup_proportion,
         #                      t_total=num_train_optimization_steps)
         optimizer = AdamW(optimizer_grouped_parameters,
-                             lr=args.learning_rate,
-                             t_total=num_train_optimization_steps)
+                             lr=args.learning_rate)
 
     global_step = 0
     logging.info("***** Running training *****")
