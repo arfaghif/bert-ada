@@ -274,9 +274,7 @@ def main():
                                              t_total=num_train_optimization_steps)
     else:
         optimizer = AdamW(optimizer_grouped_parameters,
-                             lr=args.learning_rate,
-                             warmup=args.warmup_proportion,
-                             t_total=num_train_optimization_steps)
+                             lr=args.learning_rate)
 
     global_step = 0
     logging.info("***** Running training *****")
@@ -298,7 +296,8 @@ def main():
             for step, batch in enumerate(train_dataloader):
                 batch = tuple(t.to(device) for t in batch)
                 input_ids, input_mask, segment_ids, lm_label_ids, is_next = batch
-                loss = model(input_ids, segment_ids, input_mask, lm_label_ids, is_next)
+                outputs = model(input_ids, segment_ids, input_mask, lm_label_ids, is_next)
+                loss = outputs[0]
                 if n_gpu > 1:
                     loss = loss.mean() # mean() to average on multi-gpu.
                 if args.gradient_accumulation_steps > 1:
