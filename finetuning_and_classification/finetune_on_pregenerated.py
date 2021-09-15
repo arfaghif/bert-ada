@@ -361,6 +361,7 @@ def main():
                     with open(output_lossfile_20000, "a") as f:
                         f.write("{}\n".format(avg_loss))
                     tmp_tr_loss = 0
+
                     # Save a checkpoint model
                     if n_gpu > 1 and torch.distributed.get_rank() == 0 or n_gpu <= 1:
                         logging.info("** ** * Saving fine-tuned model checkpoint ** ** * ")
