@@ -178,6 +178,8 @@ def evaluate(args, model, tokenizer, prefix=""):
     eval_outputs_dirs = (args.output_dir, args.output_dir + '-MM') if args.task_name == "mnli" else (args.output_dir,)
 
     results = {}
+    preds = []
+    labels = []
     for eval_task, eval_output_dir in zip(eval_task_names, eval_outputs_dirs):
         eval_dataset, _ = load_and_cache_examples(args, eval_task, tokenizer, evaluate=True)
 
