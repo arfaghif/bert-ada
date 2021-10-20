@@ -40,7 +40,7 @@ from pytorch_transformers import (WEIGHTS_NAME, BertConfig,
 
 from pytorch_transformers import AdamW, WarmupLinearSchedule
 
-from utils_glue_ardy import (compute_metrics, convert_examples_to_features,
+from utils_glue import (compute_metrics, convert_examples_to_features,
                         output_modes, processors)
 
 logger = logging.getLogger(__name__)
@@ -293,6 +293,11 @@ def evaluate_ardy(args, model, tokenizer, prefix=""):
 
 
 def load_and_cache_examples(args, task, tokenizer, evaluate=False):
+    # def transform_examples_to_hr(exmpls):
+    #     examples_hr = ['[CLS] ' + exp.text_a + ' [SEP] ' + exp.text_b + ' [LABEL] ' + exp.label for exp in exmpls]
+    #     return examples_hr
+    
+    # reversed version
     def transform_examples_to_hr(exmpls):
         examples_hr = ['[CLS] ' + exp.text_a + ' [SEP] ' + exp.text_b + ' [LABEL] ' + exp.label for exp in exmpls]
         return examples_hr

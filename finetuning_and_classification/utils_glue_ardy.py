@@ -169,7 +169,7 @@ def semeval2014term_to_aspectsentiment_hr(filename, remove_conflicting=True):
     sentimap = {
         'positive': 'POS',
         'negative': 'NEG',
-        # 'neutral': 'NEU',
+        'neutral': 'NEU',
         # 'conflict': 'CONF',
     }
 
@@ -244,7 +244,7 @@ class SemEval2014AtscProcessor(DataProcessor):
 
     def get_labels(self):
         """See base class."""
-        return ["POS", "NEG"] #, "NEU"]
+        return ["POS", "NEG", "NEU"]
 
     def _create_examples(self, corpus, set_type):
         """Creates examples for the training and dev sets."""
@@ -260,8 +260,13 @@ class SemEval2014AtscProcessor(DataProcessor):
 
             guid = "%s-%s" % (set_type, i)
             try:
-                text_a = sentence_pair[0]
-                text_b = sentence_pair[1]
+                # text_a = sentence_pair[0]
+                # text_b = sentence_pair[1]
+                
+                #reverse
+                text_a = sentence_pair[1]
+                text_b = sentence_pair[0]
+                 
                 label = labels[i]
             except IndexError:
                 continue
@@ -725,6 +730,6 @@ GLUE_TASKS_NUM_LABELS = {
     "qnli": 2,
     "rte": 2,
     "wnli": 2,
-    "semeval2014-atsc":2,
-    # "semeval2014-atsc":3,
+    "semeval2014-atsc":3,
+    # "semeval2014-atsc":2,
 }
