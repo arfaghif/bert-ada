@@ -332,6 +332,7 @@ def main():
                     doc.append(tokens)
             if doc:
                 docs.add_document(doc)  # If the last doc didn't end on a newline, make sure it still gets added
+        print(len(docs))
         if len(docs) <= 1:
             exit("ERROR: No document breaks were found in the input file! These are necessary to allow the script to "
                  "ensure that random NextSentences are not sampled from the same document. Please add blank lines to "
