@@ -626,7 +626,8 @@ def convert_examples_to_features(examples, label_list, max_seq_length,
         assert len(input_ids) == max_seq_length
         assert len(input_mask) == max_seq_length
         assert len(segment_ids) == max_seq_length
-
+        print(example.label)
+        print(label_map)
         if output_mode == "classification":
             label_id = label_map[example.label]
         elif output_mode == "regression":
