@@ -522,7 +522,7 @@ class MobilProcessor(DataProcessor):
 
     def get_labels(self):
         """See base class."""
-        return ["0", "1"]
+        return [0, 1]
 
     def _create_examples(self, df, set_type):
         """Creates examples for the training and dev sets."""
@@ -626,8 +626,8 @@ def convert_examples_to_features(examples, label_list, max_seq_length,
         assert len(input_ids) == max_seq_length
         assert len(input_mask) == max_seq_length
         assert len(segment_ids) == max_seq_length
-        print(example.label)
-        print(label_map)
+        # print(example.label)
+        # print(label_map)
         if output_mode == "classification":
             label_id = label_map[example.label]
         elif output_mode == "regression":
