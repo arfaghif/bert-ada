@@ -235,12 +235,12 @@ class SemEval2014AtscProcessor(DataProcessor):
     def get_train_examples(self, data_dir):
         """See base class."""
         return self._create_examples(
-            os.path.join(data_dir, "train.txt"), "train")
+            os.path.join(data_dir, "train.csv"), "train")
 
     def get_dev_examples(self, data_dir):
         """See base class."""
         return self._create_examples(
-            os.path.join(data_dir, "test.txt"), "dev")
+            os.path.join(data_dir, "test.csv"), "dev")
 
     def get_labels(self):
         """See base class."""
