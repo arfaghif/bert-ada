@@ -522,7 +522,7 @@ class MobilProcessor(DataProcessor):
 
     def get_labels(self):
         """See base class."""
-        return [0, 1]
+        return ["0", "1"]
 
     def _create_examples(self, df, set_type):
         """Creates examples for the training and dev sets."""
@@ -533,7 +533,7 @@ class MobilProcessor(DataProcessor):
             guid = "%s-%s" % (set_type, str(i))
             text_a = df.iloc[i]["text_a"]
             text_b = df.iloc[i]["text_b"]
-            label = df.iloc[i]["label"]
+            label = str(df.iloc[i]["label"])
             examples.append(
                 InputExample(guid=guid, text_a=text_a, text_b=text_b, label=label))
         return examples
